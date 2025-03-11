@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>itv_asset_tree.utils.lookup_builder &#8212; seeq-itv-asset-tree v1.3.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css?v=27fed22d" />
+    <script src="../../../_static/documentation_options.js?v=771d088f"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for itv_asset_tree.utils.lookup_builder</h1><div class="highlight"><pre>
+<span></span><span class="c1"># src/utilities/lookup_builder.py</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<div class="viewcode-block" id="LookupTableBuilder">
+<a class="viewcode-back" href="../../../itv_asset_tree.utils.html#itv_asset_tree.utils.lookup_builder.LookupTableBuilder">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">LookupTableBuilder</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Builds lookup tables from cleaned data.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group_column</span><span class="p">,</span> <span class="n">key_column</span><span class="p">,</span> <span class="n">value_column</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">group_column</span> <span class="o">=</span> <span class="n">group_column</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">key_column</span> <span class="o">=</span> <span class="n">key_column</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value_column</span> <span class="o">=</span> <span class="n">value_column</span>
+
+    <span class="c1"># Add a new method to the class to build lookup tables as a dictionary</span>
+<div class="viewcode-block" id="LookupTableBuilder.build">
+<a class="viewcode-back" href="../../../itv_asset_tree.utils.html#itv_asset_tree.utils.lookup_builder.LookupTableBuilder.build">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Builds lookup tables as a dictionary.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            data (DataFrame): The DataFrame containing the data.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Grouped lookup table data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lookup_tables</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">group_name</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_column</span><span class="p">):</span>
+            <span class="n">table</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">str</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">key_column</span><span class="p">]),</span> <span class="nb">str</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">value_column</span><span class="p">])]</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()]</span>
+            <span class="n">lookup_tables</span><span class="p">[</span><span class="n">group_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">table</span>
+        <span class="k">return</span> <span class="n">lookup_tables</span></div>
+
+
+    <span class="c1"># Add a new static method to the class to save the lookup table data to a CSV file</span>
+<div class="viewcode-block" id="LookupTableBuilder.save_lookup_to_csv">
+<a class="viewcode-back" href="../../../itv_asset_tree.utils.html#itv_asset_tree.utils.lookup_builder.LookupTableBuilder.save_lookup_to_csv">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_lookup_to_csv</span><span class="p">(</span><span class="n">lookup_data</span><span class="p">,</span> <span class="n">parent_paths</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Save lookup table data to a CSV file in the required format.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            lookup_data (dict): Lookup table dictionary where keys are group names.</span>
+<span class="sd">            parent_paths (dict): Dictionary mapping group names to Parent Paths.</span>
+<span class="sd">            output_file (str): Path to save the output CSV file.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Formula&quot;</span><span class="p">,</span> <span class="s2">&quot;Formula Parameters&quot;</span><span class="p">,</span> <span class="s2">&quot;Parent Path&quot;</span><span class="p">]</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">group_name</span><span class="p">,</span> <span class="n">table</span> <span class="ow">in</span> <span class="n">lookup_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="c1"># Correct JSON dump, without additional escaping</span>
+            <span class="n">formatted_formula</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            
+            <span class="c1"># Print the formula *before* writing it</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🚨 DEBUG: About to save formula for &#39;</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="s2">&#39;: </span><span class="si">{</span><span class="n">formatted_formula</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="n">group_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;_LookupString&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Formula&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">formatted_formula</span><span class="si">}</span><span class="s1">&quot;&#39;</span><span class="p">,</span>
+                <span class="s2">&quot;Formula Parameters&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Parent Path&quot;</span><span class="p">:</span> <span class="n">parent_paths</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">group_name</span><span class="p">,</span> <span class="s2">&quot;Root Asset&quot;</span><span class="p">),</span>
+            <span class="p">})</span>
+
+        <span class="c1"># Write CSV</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictWriter</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">fieldnames</span><span class="o">=</span><span class="n">fields</span><span class="p">,</span> <span class="n">quoting</span><span class="o">=</span><span class="n">csv</span><span class="o">.</span><span class="n">QUOTE_MINIMAL</span><span class="p">)</span>
+            <span class="n">writer</span><span class="o">.</span><span class="n">writeheader</span><span class="p">()</span>
+            <span class="n">writer</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Lookup CSV file &#39;</span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s2">&#39; created successfully.&quot;</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">seeq-itv-asset-tree</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">src</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Tim Pomaville.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
