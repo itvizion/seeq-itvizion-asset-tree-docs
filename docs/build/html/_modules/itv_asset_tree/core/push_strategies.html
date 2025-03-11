@@ -37,13 +37,24 @@
 <div class="viewcode-block" id="PushStrategy">
 <a class="viewcode-back" href="../../../itv_asset_tree.core.html#itv_asset_tree.core.push_strategies.PushStrategy">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">PushStrategy</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Interface for different push strategies.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Abstract base class defining the interface for different push strategies.</span>
+
+<span class="sd">    Subclasses must implement the `push` method to define how asset trees</span>
+<span class="sd">    should be pushed to Seeq.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="PushStrategy.push">
 <a class="viewcode-back" href="../../../itv_asset_tree.core.html#itv_asset_tree.core.push_strategies.PushStrategy.push">[docs]</a>
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tree</span><span class="p">,</span> <span class="n">metadata_state_file</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Push method to be implemented by different strategies.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Pushes the asset tree to Seeq.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            tree: The asset tree to be pushed.</span>
+<span class="sd">            metadata_state_file (str, optional): The path to the metadata state file.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 </div>
 
@@ -51,11 +62,26 @@
 <div class="viewcode-block" id="ImmediatePush">
 <a class="viewcode-back" href="../../../itv_asset_tree.core.html#itv_asset_tree.core.push_strategies.ImmediatePush">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ImmediatePush</span><span class="p">(</span><span class="n">PushStrategy</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Push changes immediately after every modification.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Pushes changes to Seeq immediately after every modification.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="ImmediatePush.push">
 <a class="viewcode-back" href="../../../itv_asset_tree.core.html#itv_asset_tree.core.push_strategies.ImmediatePush.push">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tree</span><span class="p">,</span> <span class="n">metadata_state_file</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Executes an immediate push operation for the given asset tree.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            tree: The asset tree to be pushed.</span>
+<span class="sd">            metadata_state_file (str, optional): The path to the metadata state file.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: A message indicating the success or failure of the push operation.</span>
+<span class="sd">        </span>
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If the tree is not available for pushing.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">tree</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;❌ No tree available to push.&quot;</span><span class="p">)</span>
 
@@ -74,14 +100,29 @@
 <div class="viewcode-block" id="BatchPush">
 <a class="viewcode-back" href="../../../itv_asset_tree.core.html#itv_asset_tree.core.push_strategies.BatchPush">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">BatchPush</span><span class="p">(</span><span class="n">PushStrategy</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Batch pushes multiple changes before committing to Seeq.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Batches multiple tree changes before committing them to Seeq.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes a batch queue for storing asset trees to be pushed later.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">batch</span> <span class="o">=</span> <span class="p">[]</span>
 
 <div class="viewcode-block" id="BatchPush.push">
 <a class="viewcode-back" href="../../../itv_asset_tree.core.html#itv_asset_tree.core.push_strategies.BatchPush.push">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tree</span><span class="p">,</span> <span class="n">metadata_state_file</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds an asset tree to the batch queue.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            tree: The asset tree to be added to the batch.</span>
+<span class="sd">            metadata_state_file (str, optional): The path to the metadata state file.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If the tree is not available.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">tree</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;❌ No tree available to push.&quot;</span><span class="p">)</span>
 
@@ -92,7 +133,9 @@
 <div class="viewcode-block" id="BatchPush.commit">
 <a class="viewcode-back" href="../../../itv_asset_tree.core.html#itv_asset_tree.core.push_strategies.BatchPush.commit">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">commit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Push all batched changes at once.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Pushes all batched asset trees to Seeq at once.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚠️ [DEBUG] No trees in batch. Nothing to push.&quot;</span><span class="p">)</span>
             <span class="k">return</span>
@@ -108,7 +151,9 @@
 <div class="viewcode-block" id="BatchPush.clear_batch">
 <a class="viewcode-back" href="../../../itv_asset_tree.core.html#itv_asset_tree.core.push_strategies.BatchPush.clear_batch">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">clear_batch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Discard all batched changes without pushing.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Clears the batch queue, discarding all pending changes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚠️ [DEBUG] Clearing batch queue. All changes discarded.&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">batch</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span></div>
 </div>
@@ -117,11 +162,23 @@
 <div class="viewcode-block" id="DryRunPush">
 <a class="viewcode-back" href="../../../itv_asset_tree.core.html#itv_asset_tree.core.push_strategies.DryRunPush">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">DryRunPush</span><span class="p">(</span><span class="n">PushStrategy</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Simulates a push without actually modifying Seeq.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simulates a push operation without actually modifying Seeq.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="DryRunPush.push">
 <a class="viewcode-back" href="../../../itv_asset_tree.core.html#itv_asset_tree.core.push_strategies.DryRunPush.push">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tree</span><span class="p">,</span> <span class="n">metadata_state_file</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Performs a dry-run push for testing purposes.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            tree: The asset tree being simulated.</span>
+<span class="sd">            metadata_state_file (str, optional): The path to the metadata state file.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Details of the simulated push operation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;📝 [DEBUG] Dry-run push for tree &#39;</span><span class="si">{</span><span class="n">tree</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;. No changes applied.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">{</span>
             <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Dry-run push for tree &#39;</span><span class="si">{</span><span class="n">tree</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39; completed.&quot;</span><span class="p">,</span>

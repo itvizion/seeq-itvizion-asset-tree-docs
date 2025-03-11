@@ -53,10 +53,21 @@
 <dt class="sig sig-object py" id="itv_asset_tree.core.interfaces.ITreeInsert">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">itv_asset_tree.core.interfaces.</span></span><span class="sig-name descname"><span class="pre">ITreeInsert</span></span><a class="reference internal" href="_modules/itv_asset_tree/core/interfaces.html#ITreeInsert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#itv_asset_tree.core.interfaces.ITreeInsert" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Interface for inserting items into an asset tree.</p>
+<p>This interface defines the required method for inserting an item under a specified parent path.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="itv_asset_tree.core.interfaces.ITreeInsert.insert_item">
 <em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">insert_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item_definition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/itv_asset_tree/core/interfaces.html#ITreeInsert.insert_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#itv_asset_tree.core.interfaces.ITreeInsert.insert_item" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Inserts an item into the tree under the specified parent path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parent_path</strong> (<em>str</em>) – The path of the parent node where the item should be inserted.</p></li>
+<li><p><strong>item_definition</strong> (<em>dict</em>) – A dictionary defining the item’s attributes.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -64,10 +75,21 @@
 <dt class="sig sig-object py" id="itv_asset_tree.core.interfaces.ITreeMove">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">itv_asset_tree.core.interfaces.</span></span><span class="sig-name descname"><span class="pre">ITreeMove</span></span><a class="reference internal" href="_modules/itv_asset_tree/core/interfaces.html#ITreeMove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#itv_asset_tree.core.interfaces.ITreeMove" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Interface for moving items within an asset tree.</p>
+<p>This interface enforces the implementation of item movement between tree locations.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="itv_asset_tree.core.interfaces.ITreeMove.move_item">
 <em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/itv_asset_tree/core/interfaces.html#ITreeMove.move_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#itv_asset_tree.core.interfaces.ITreeMove.move_item" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Moves an item from the source path to the destination path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<em>str</em>) – The current location of the item in the tree.</p></li>
+<li><p><strong>destination</strong> (<em>str</em>) – The new location where the item should be moved.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -75,10 +97,18 @@
 <dt class="sig sig-object py" id="itv_asset_tree.core.interfaces.ITreeRemove">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">itv_asset_tree.core.interfaces.</span></span><span class="sig-name descname"><span class="pre">ITreeRemove</span></span><a class="reference internal" href="_modules/itv_asset_tree/core/interfaces.html#ITreeRemove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#itv_asset_tree.core.interfaces.ITreeRemove" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Interface for removing items from an asset tree.</p>
+<p>This interface enforces the implementation of item deletion within a tree structure.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="itv_asset_tree.core.interfaces.ITreeRemove.remove_item">
 <em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/itv_asset_tree/core/interfaces.html#ITreeRemove.remove_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#itv_asset_tree.core.interfaces.ITreeRemove.remove_item" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Removes an item from the tree at the specified path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>item_path</strong> (<em>str</em>) – The path of the item to be removed.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -90,10 +120,23 @@
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">itv_asset_tree.core.push_manager.</span></span><span class="sig-name descname"><span class="pre">PushManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strategy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#itv_asset_tree.core.push_strategies.PushStrategy" title="itv_asset_tree.core.push_strategies.PushStrategy"><span class="pre">PushStrategy</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/itv_asset_tree/core/push_manager.html#PushManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#itv_asset_tree.core.push_manager.PushManager" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Handles pushing an asset tree to Seeq using different push strategies.</p>
+<p>This class manages the process of pushing a tree using a specified strategy,
+allowing for flexibility in how the push operation is executed.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="itv_asset_tree.core.push_manager.PushManager.push">
 <span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metadata_state_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/itv_asset_tree/core/push_manager.html#PushManager.push"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#itv_asset_tree.core.push_manager.PushManager.push" title="Link to this definition">¶</a></dt>
-<dd><p>Uses the assigned strategy to push the tree.</p>
+<dd><p>Executes the push operation using the assigned push strategy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>metadata_state_file</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to a metadata state file for storing push state.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The result of the push operation, as determined by the strategy.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -105,23 +148,34 @@
 <dt class="sig sig-object py" id="itv_asset_tree.core.push_strategies.BatchPush">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">itv_asset_tree.core.push_strategies.</span></span><span class="sig-name descname"><span class="pre">BatchPush</span></span><a class="reference internal" href="_modules/itv_asset_tree/core/push_strategies.html#BatchPush"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#itv_asset_tree.core.push_strategies.BatchPush" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#itv_asset_tree.core.push_strategies.PushStrategy" title="itv_asset_tree.core.push_strategies.PushStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">PushStrategy</span></code></a></p>
-<p>Batch pushes multiple changes before committing to Seeq.</p>
+<p>Batches multiple tree changes before committing them to Seeq.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="itv_asset_tree.core.push_strategies.BatchPush.clear_batch">
 <span class="sig-name descname"><span class="pre">clear_batch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/itv_asset_tree/core/push_strategies.html#BatchPush.clear_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#itv_asset_tree.core.push_strategies.BatchPush.clear_batch" title="Link to this definition">¶</a></dt>
-<dd><p>Discard all batched changes without pushing.</p>
+<dd><p>Clears the batch queue, discarding all pending changes.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="itv_asset_tree.core.push_strategies.BatchPush.commit">
 <span class="sig-name descname"><span class="pre">commit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/itv_asset_tree/core/push_strategies.html#BatchPush.commit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#itv_asset_tree.core.push_strategies.BatchPush.commit" title="Link to this definition">¶</a></dt>
-<dd><p>Push all batched changes at once.</p>
+<dd><p>Pushes all batched asset trees to Seeq at once.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="itv_asset_tree.core.push_strategies.BatchPush.push">
 <span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata_state_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/itv_asset_tree/core/push_strategies.html#BatchPush.push"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#itv_asset_tree.core.push_strategies.BatchPush.push" title="Link to this definition">¶</a></dt>
-<dd><p>Push method to be implemented by different strategies.</p>
+<dd><p>Adds an asset tree to the batch queue.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tree</strong> – The asset tree to be added to the batch.</p></li>
+<li><p><strong>metadata_state_file</strong> (<em>str</em><em>, </em><em>optional</em>) – The path to the metadata state file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the tree is not available.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -130,11 +184,25 @@
 <dt class="sig sig-object py" id="itv_asset_tree.core.push_strategies.DryRunPush">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">itv_asset_tree.core.push_strategies.</span></span><span class="sig-name descname"><span class="pre">DryRunPush</span></span><a class="reference internal" href="_modules/itv_asset_tree/core/push_strategies.html#DryRunPush"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#itv_asset_tree.core.push_strategies.DryRunPush" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#itv_asset_tree.core.push_strategies.PushStrategy" title="itv_asset_tree.core.push_strategies.PushStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">PushStrategy</span></code></a></p>
-<p>Simulates a push without actually modifying Seeq.</p>
+<p>Simulates a push operation without actually modifying Seeq.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="itv_asset_tree.core.push_strategies.DryRunPush.push">
 <span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata_state_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/itv_asset_tree/core/push_strategies.html#DryRunPush.push"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#itv_asset_tree.core.push_strategies.DryRunPush.push" title="Link to this definition">¶</a></dt>
-<dd><p>Push method to be implemented by different strategies.</p>
+<dd><p>Performs a dry-run push for testing purposes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tree</strong> – The asset tree being simulated.</p></li>
+<li><p><strong>metadata_state_file</strong> (<em>str</em><em>, </em><em>optional</em>) – The path to the metadata state file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Details of the simulated push operation.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -143,11 +211,28 @@
 <dt class="sig sig-object py" id="itv_asset_tree.core.push_strategies.ImmediatePush">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">itv_asset_tree.core.push_strategies.</span></span><span class="sig-name descname"><span class="pre">ImmediatePush</span></span><a class="reference internal" href="_modules/itv_asset_tree/core/push_strategies.html#ImmediatePush"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#itv_asset_tree.core.push_strategies.ImmediatePush" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#itv_asset_tree.core.push_strategies.PushStrategy" title="itv_asset_tree.core.push_strategies.PushStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">PushStrategy</span></code></a></p>
-<p>Push changes immediately after every modification.</p>
+<p>Pushes changes to Seeq immediately after every modification.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="itv_asset_tree.core.push_strategies.ImmediatePush.push">
 <span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata_state_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/itv_asset_tree/core/push_strategies.html#ImmediatePush.push"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#itv_asset_tree.core.push_strategies.ImmediatePush.push" title="Link to this definition">¶</a></dt>
-<dd><p>Push method to be implemented by different strategies.</p>
+<dd><p>Executes an immediate push operation for the given asset tree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tree</strong> – The asset tree to be pushed.</p></li>
+<li><p><strong>metadata_state_file</strong> (<em>str</em><em>, </em><em>optional</em>) – The path to the metadata state file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A message indicating the success or failure of the push operation.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the tree is not available for pushing.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -156,11 +241,21 @@
 <dt class="sig sig-object py" id="itv_asset_tree.core.push_strategies.PushStrategy">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">itv_asset_tree.core.push_strategies.</span></span><span class="sig-name descname"><span class="pre">PushStrategy</span></span><a class="reference internal" href="_modules/itv_asset_tree/core/push_strategies.html#PushStrategy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#itv_asset_tree.core.push_strategies.PushStrategy" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
-<p>Interface for different push strategies.</p>
+<p>Abstract base class defining the interface for different push strategies.</p>
+<p>Subclasses must implement the <cite>push</cite> method to define how asset trees
+should be pushed to Seeq.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="itv_asset_tree.core.push_strategies.PushStrategy.push">
 <em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata_state_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/itv_asset_tree/core/push_strategies.html#PushStrategy.push"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#itv_asset_tree.core.push_strategies.PushStrategy.push" title="Link to this definition">¶</a></dt>
-<dd><p>Push method to be implemented by different strategies.</p>
+<dd><p>Pushes the asset tree to Seeq.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tree</strong> – The asset tree to be pushed.</p></li>
+<li><p><strong>metadata_state_file</strong> (<em>str</em><em>, </em><em>optional</em>) – The path to the metadata state file.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -182,16 +277,30 @@
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">itv_asset_tree.core.tree_manager.</span></span><span class="sig-name descname"><span class="pre">TreeManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">workbook</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/itv_asset_tree/core/tree_manager.html#TreeManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#itv_asset_tree.core.tree_manager.TreeManager" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
 <p>Abstract base class for managing asset trees in Seeq.</p>
+<p>This class defines a blueprint for constructing and clearing asset trees within a specified workbook.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="itv_asset_tree.core.tree_manager.TreeManager.build_tree">
 <em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">build_tree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">friendly_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/itv_asset_tree/core/tree_manager.html#TreeManager.build_tree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#itv_asset_tree.core.tree_manager.TreeManager.build_tree" title="Link to this definition">¶</a></dt>
-<dd><p>Construct a tree with the given name and description.</p>
+<dd><p>Constructs a new tree with the specified name and description.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>friendly_name</strong> (<em>str</em>) – The display name of the tree.</p></li>
+<li><p><strong>description</strong> (<em>str</em>) – A description of the tree.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="itv_asset_tree.core.tree_manager.TreeManager.clear_existing_tree">
 <em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">clear_existing_tree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/itv_asset_tree/core/tree_manager.html#TreeManager.clear_existing_tree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#itv_asset_tree.core.tree_manager.TreeManager.clear_existing_tree" title="Link to this definition">¶</a></dt>
-<dd><p>Clear an existing tree by name.</p>
+<dd><p>Clears an existing tree by its name, removing it from the workbook.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tree_name</strong> (<em>str</em>) – The name of the tree to be cleared.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -210,10 +319,20 @@
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">itv_asset_tree.core.tree_prpoperty_manager.</span></span><span class="sig-name descname"><span class="pre">TreePropertyManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/itv_asset_tree/core/tree_prpoperty_manager.html#TreePropertyManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#itv_asset_tree.core.tree_prpoperty_manager.TreePropertyManager" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Handles applying properties to asset tree items.</p>
+<p>This class allows for modifying existing items in the asset tree by updating their properties
+based on provided metadata.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="itv_asset_tree.core.tree_prpoperty_manager.TreePropertyManager.apply_properties">
 <span class="sig-name descname"><span class="pre">apply_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metadata</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/itv_asset_tree/core/tree_prpoperty_manager.html#TreePropertyManager.apply_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#itv_asset_tree.core.tree_prpoperty_manager.TreePropertyManager.apply_properties" title="Link to this definition">¶</a></dt>
-<dd><p>Apply properties to existing tree items.</p>
+<dd><p>Applies properties to existing tree items based on provided metadata.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>metadata</strong> (<em>pd.DataFrame</em>) – A DataFrame containing metadata with property values.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Exception</strong> – If there is an error during property application.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>

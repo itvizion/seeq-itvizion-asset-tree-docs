@@ -39,10 +39,22 @@
 <div class="viewcode-block" id="ITreeInsert">
 <a class="viewcode-back" href="../../../itv_asset_tree.core.html#itv_asset_tree.core.interfaces.ITreeInsert">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ITreeInsert</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Interface for inserting items into an asset tree.</span>
+<span class="sd">    </span>
+<span class="sd">    This interface defines the required method for inserting an item under a specified parent path.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="ITreeInsert.insert_item">
 <a class="viewcode-back" href="../../../itv_asset_tree.core.html#itv_asset_tree.core.interfaces.ITreeInsert.insert_item">[docs]</a>
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">insert_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">item_definition</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inserts an item into the tree under the specified parent path.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            parent_path (str): The path of the parent node where the item should be inserted.</span>
+<span class="sd">            item_definition (dict): A dictionary defining the item&#39;s attributes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 </div>
 
@@ -51,10 +63,22 @@
 <div class="viewcode-block" id="ITreeMove">
 <a class="viewcode-back" href="../../../itv_asset_tree.core.html#itv_asset_tree.core.interfaces.ITreeMove">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ITreeMove</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Interface for moving items within an asset tree.</span>
+<span class="sd">    </span>
+<span class="sd">    This interface enforces the implementation of item movement between tree locations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="ITreeMove.move_item">
 <a class="viewcode-back" href="../../../itv_asset_tree.core.html#itv_asset_tree.core.interfaces.ITreeMove.move_item">[docs]</a>
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">move_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">destination</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Moves an item from the source path to the destination path.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            source (str): The current location of the item in the tree.</span>
+<span class="sd">            destination (str): The new location where the item should be moved.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 </div>
 
@@ -63,10 +87,21 @@
 <div class="viewcode-block" id="ITreeRemove">
 <a class="viewcode-back" href="../../../itv_asset_tree.core.html#itv_asset_tree.core.interfaces.ITreeRemove">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ITreeRemove</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Interface for removing items from an asset tree.</span>
+<span class="sd">    </span>
+<span class="sd">    This interface enforces the implementation of item deletion within a tree structure.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="ITreeRemove.remove_item">
 <a class="viewcode-back" href="../../../itv_asset_tree.core.html#itv_asset_tree.core.interfaces.ITreeRemove.remove_item">[docs]</a>
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">remove_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Removes an item from the tree at the specified path.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            item_path (str): The path of the item to be removed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 </div>
 

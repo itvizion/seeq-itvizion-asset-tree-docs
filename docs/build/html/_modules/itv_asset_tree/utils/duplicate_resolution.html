@@ -36,10 +36,24 @@
 <div class="viewcode-block" id="DuplicateStrategy">
 <a class="viewcode-back" href="../../../itv_asset_tree.utils.html#itv_asset_tree.utils.duplicate_resolution.DuplicateStrategy">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">DuplicateStrategy</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for duplicate resolution strategies.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base class for duplicate resolution strategies.</span>
+<span class="sd">    </span>
+<span class="sd">    Subclasses must implement the `resolve` method to specify how duplicates should be handled.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="DuplicateStrategy.resolve">
 <a class="viewcode-back" href="../../../itv_asset_tree.utils.html#itv_asset_tree.utils.duplicate_resolution.DuplicateStrategy.resolve">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">resolve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">key_column</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Resolves duplicates within a given group.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            group (pd.DataFrame): The group of data containing potential duplicates.</span>
+<span class="sd">            key_column (str): The column used to determine duplicates.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: A DataFrame with duplicates resolved according to the strategy.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 </div>
 
@@ -47,6 +61,9 @@
 <div class="viewcode-block" id="KeepFirstStrategy">
 <a class="viewcode-back" href="../../../itv_asset_tree.utils.html#itv_asset_tree.utils.duplicate_resolution.KeepFirstStrategy">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">KeepFirstStrategy</span><span class="p">(</span><span class="n">DuplicateStrategy</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Strategy that keeps the first occurrence of each duplicate and removes the rest.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="KeepFirstStrategy.resolve">
 <a class="viewcode-back" href="../../../itv_asset_tree.utils.html#itv_asset_tree.utils.duplicate_resolution.KeepFirstStrategy.resolve">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">resolve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">key_column</span><span class="p">):</span>
@@ -57,6 +74,9 @@
 <div class="viewcode-block" id="KeepLastStrategy">
 <a class="viewcode-back" href="../../../itv_asset_tree.utils.html#itv_asset_tree.utils.duplicate_resolution.KeepLastStrategy">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">KeepLastStrategy</span><span class="p">(</span><span class="n">DuplicateStrategy</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Strategy that keeps the last occurrence of each duplicate and removes the rest.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="KeepLastStrategy.resolve">
 <a class="viewcode-back" href="../../../itv_asset_tree.utils.html#itv_asset_tree.utils.duplicate_resolution.KeepLastStrategy.resolve">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">resolve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">key_column</span><span class="p">):</span>
@@ -67,6 +87,9 @@
 <div class="viewcode-block" id="RemoveAllStrategy">
 <a class="viewcode-back" href="../../../itv_asset_tree.utils.html#itv_asset_tree.utils.duplicate_resolution.RemoveAllStrategy">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">RemoveAllStrategy</span><span class="p">(</span><span class="n">DuplicateStrategy</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Strategy that removes all occurrences of a duplicate.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="RemoveAllStrategy.resolve">
 <a class="viewcode-back" href="../../../itv_asset_tree.utils.html#itv_asset_tree.utils.duplicate_resolution.RemoveAllStrategy.resolve">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">resolve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">key_column</span><span class="p">):</span>
@@ -77,7 +100,16 @@
 <div class="viewcode-block" id="UserSpecificStrategy">
 <a class="viewcode-back" href="../../../itv_asset_tree.utils.html#itv_asset_tree.utils.duplicate_resolution.UserSpecificStrategy">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">UserSpecificStrategy</span><span class="p">(</span><span class="n">DuplicateStrategy</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Strategy that keeps user-specified rows while removing others.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rows_to_keep</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the strategy with a list of row indices to keep.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            rows_to_keep (list[int]): List of indices indicating rows to keep.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rows_to_keep</span> <span class="o">=</span> <span class="n">rows_to_keep</span>
 
 <div class="viewcode-block" id="UserSpecificStrategy.resolve">
@@ -90,14 +122,32 @@
 <div class="viewcode-block" id="DuplicateResolver">
 <a class="viewcode-back" href="../../../itv_asset_tree.utils.html#itv_asset_tree.utils.duplicate_resolution.DuplicateResolver">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">DuplicateResolver</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Resolves duplicates based on user-selected strategies.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Resolves duplicates within a dataset based on user-selected strategies.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">strategy</span><span class="p">:</span> <span class="n">DuplicateStrategy</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the resolver with a specified duplicate resolution strategy.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            strategy (DuplicateStrategy): The strategy to use for resolving duplicates.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span> <span class="o">=</span> <span class="n">strategy</span>
 
 <div class="viewcode-block" id="DuplicateResolver.resolve_group">
 <a class="viewcode-back" href="../../../itv_asset_tree.utils.html#itv_asset_tree.utils.duplicate_resolution.DuplicateResolver.resolve_group">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">resolve_group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">group_name</span><span class="p">,</span> <span class="n">key_column</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve duplicates within a single group.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Resolves duplicates within a single group of data.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            group (pd.DataFrame): The group of data containing potential duplicates.</span>
+<span class="sd">            group_name (str): The name of the group being processed.</span>
+<span class="sd">            key_column (str): The column used to determine duplicates.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pd.DataFrame: A DataFrame with resolved duplicates.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">duplicates</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="n">group</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">key_column</span><span class="p">,</span> <span class="n">keep</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span>
         <span class="k">if</span> <span class="n">duplicates</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ No duplicates found in group &#39;</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>

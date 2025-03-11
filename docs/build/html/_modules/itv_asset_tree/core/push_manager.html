@@ -33,71 +33,6 @@
   <h1>Source code for itv_asset_tree.core.push_manager</h1><div class="highlight"><pre>
 <span></span><span class="c1"># # src/itv_asset_tree/core/push_manager.py</span>
 
-<span class="c1"># class PushManager:</span>
-<span class="c1">#     &quot;&quot;&quot;</span>
-<span class="c1">#     Handles pushing an asset tree to Seeq.</span>
-<span class="c1">#     &quot;&quot;&quot;</span>
-
-<span class="c1">#     def __init__(self, tree):</span>
-<span class="c1">#         if not tree:</span>
-<span class="c1">#             raise ValueError(&quot;❌ PushManager received an empty tree.&quot;)</span>
-
-<span class="c1">#         print(f&quot;✅ [DEBUG] PushManager initialized with tree &#39;{tree.name}&#39;.&quot;)</span>
-<span class="c1">#         self.tree = tree</span>
-
-<span class="c1">#         # **Add a safe-guard flag to prevent recursion**</span>
-<span class="c1">#         if not hasattr(self.tree, &quot;_push_in_progress&quot;):</span>
-<span class="c1">#             self.tree._push_in_progress = False  </span>
-
-<span class="c1">#     def push(self, metadata_state_file=None):</span>
-<span class="c1">#         &quot;&quot;&quot;</span>
-<span class="c1">#         Pushes the asset tree to Seeq.</span>
-
-<span class="c1">#         Parameters:</span>
-<span class="c1">#         ----------</span>
-<span class="c1">#         metadata_state_file : str, optional</span>
-<span class="c1">#             Path to save the metadata state file.</span>
-<span class="c1">#         &quot;&quot;&quot;</span>
-<span class="c1">#         if self.tree._push_in_progress:</span>
-<span class="c1">#             print(&quot;🚨 [ERROR] Recursive push detected! Preventing re-entry.&quot;)</span>
-<span class="c1">#             return {&quot;error&quot;: &quot;Recursive push prevented.&quot;}</span>
-
-<span class="c1">#         self.tree._push_in_progress = True  # Mark push in progress</span>
-
-<span class="c1">#         try:</span>
-<span class="c1">#             print(f&quot;🚀 [DEBUG] About to push tree &#39;{self.tree.name}&#39; to Seeq...&quot;)</span>
-
-<span class="c1">#             # **Check Call Stack**</span>
-<span class="c1">#             print(&quot;🔍 [DEBUG] Call stack before push:&quot;)</span>
-<span class="c1">#             print(&quot;&quot;.join(traceback.format_stack(limit=10)))  </span>
-
-<span class="c1">#             # **Check tree push method reference**</span>
-<span class="c1">#             print(f&quot;📌 [DEBUG] self.tree.push reference: {self.tree.push}&quot;)</span>
-
-<span class="c1">#             # **Ensure push() is callable**</span>
-<span class="c1">#             if not hasattr(self.tree, &quot;push&quot;) or not callable(self.tree.push):</span>
-<span class="c1">#                 print(&quot;❌ [ERROR] self.tree.push() is not callable! Something is wrong!&quot;)</span>
-<span class="c1">#                 return {&quot;error&quot;: &quot;Tree push method is not callable!&quot;}</span>
-
-<span class="c1">#             print(f&quot;📊 [DEBUG] Calling `self.tree.push()` now...&quot;)</span>
-
-<span class="c1">#             # **Actually push the tree**</span>
-<span class="c1">#             result = self.tree.push(metadata_state_file=metadata_state_file)</span>
-
-<span class="c1">#             print(f&quot;✅ [DEBUG] Tree &#39;{self.tree.name}&#39; successfully pushed.&quot;)</span>
-<span class="c1">#             return {&quot;message&quot;: f&quot;Tree &#39;{self.tree.name}&#39; pushed successfully.&quot;, &quot;result&quot;: result}</span>
-
-<span class="c1">#         except RecursionError:</span>
-<span class="c1">#             print(f&quot;❌ [ERROR] Recursion error detected while pushing tree &#39;{self.tree.name}&#39;!&quot;)</span>
-<span class="c1">#             return {&quot;error&quot;: &quot;Recursion error detected!&quot;}</span>
-
-<span class="c1">#         except Exception as e:</span>
-<span class="c1">#             print(f&quot;❌ [ERROR] Push failed: {e}&quot;)</span>
-<span class="c1">#             return {&quot;error&quot;: str(e)}</span>
-
-<span class="c1">#         finally:</span>
-<span class="c1">#             self.tree._push_in_progress = False  # Reset flag after execution</span>
-
 <span class="kn">from</span><span class="w"> </span><span class="nn">.push_strategies</span><span class="w"> </span><span class="kn">import</span> <span class="n">PushStrategy</span><span class="p">,</span> <span class="n">ImmediatePush</span>
 
 <div class="viewcode-block" id="PushManager">
@@ -105,9 +40,22 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">PushManager</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Handles pushing an asset tree to Seeq using different push strategies.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 
+<span class="sd">    This class manages the process of pushing a tree using a specified strategy,</span>
+<span class="sd">    allowing for flexibility in how the push operation is executed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tree</span><span class="p">,</span> <span class="n">strategy</span><span class="p">:</span> <span class="n">PushStrategy</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the PushManager with an asset tree and a push strategy.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            tree: The asset tree to be pushed.</span>
+<span class="sd">            strategy (PushStrategy, optional): The strategy to use for pushing the tree.</span>
+<span class="sd">                Defaults to `ImmediatePush` if no strategy is provided.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If the provided tree is empty or invalid.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">tree</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;❌ PushManager received an empty tree.&quot;</span><span class="p">)</span>
 
@@ -120,7 +68,13 @@
 <a class="viewcode-back" href="../../../itv_asset_tree.core.html#itv_asset_tree.core.push_manager.PushManager.push">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata_state_file</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Uses the assigned strategy to push the tree.</span>
+<span class="sd">        Executes the push operation using the assigned push strategy.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            metadata_state_file (str, optional): Path to a metadata state file for storing push state.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Any: The result of the push operation, as determined by the strategy.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">,</span> <span class="n">metadata_state_file</span><span class="p">)</span></div>
 </div>

@@ -40,9 +40,17 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">TreeManager</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Abstract base class for managing asset trees in Seeq.</span>
+<span class="sd">    </span>
+<span class="sd">    This class defines a blueprint for constructing and clearing asset trees within a specified workbook.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">workbook</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the TreeManager with a specified workbook.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            workbook (str): The name of the workbook containing the asset tree.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">workbook</span> <span class="o">=</span> <span class="n">workbook</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tree</span> <span class="o">=</span> <span class="kc">None</span>
 
@@ -50,7 +58,13 @@
 <a class="viewcode-back" href="../../../itv_asset_tree.core.html#itv_asset_tree.core.tree_manager.TreeManager.build_tree">[docs]</a>
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">build_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">friendly_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Construct a tree with the given name and description.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructs a new tree with the specified name and description.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            friendly_name (str): The display name of the tree.</span>
+<span class="sd">            description (str): A description of the tree.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
 
@@ -58,7 +72,12 @@
 <a class="viewcode-back" href="../../../itv_asset_tree.core.html#itv_asset_tree.core.tree_manager.TreeManager.clear_existing_tree">[docs]</a>
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">clear_existing_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tree_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Clear an existing tree by name.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Clears an existing tree by its name, removing it from the workbook.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            tree_name (str): The name of the tree to be cleared.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 </div>
 

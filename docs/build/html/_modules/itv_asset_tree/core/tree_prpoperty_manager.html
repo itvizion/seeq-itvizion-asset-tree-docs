@@ -36,15 +36,32 @@
 <span></span><span class="k">class</span><span class="w"> </span><span class="nc">TreePropertyManager</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Handles applying properties to asset tree items.</span>
+<span class="sd">    </span>
+<span class="sd">    This class allows for modifying existing items in the asset tree by updating their properties</span>
+<span class="sd">    based on provided metadata.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tree</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the TreePropertyManager with a specified tree instance.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            tree: The asset tree to which properties will be applied.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tree</span> <span class="o">=</span> <span class="n">tree</span>
 
 <div class="viewcode-block" id="TreePropertyManager.apply_properties">
 <a class="viewcode-back" href="../../../itv_asset_tree.core.html#itv_asset_tree.core.tree_prpoperty_manager.TreePropertyManager.apply_properties">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">apply_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Apply properties to existing tree items.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Applies properties to existing tree items based on provided metadata.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            metadata (pd.DataFrame): A DataFrame containing metadata with property values.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            Exception: If there is an error during property application.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">metadata</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚠️ No metadata available to apply properties.&quot;</span><span class="p">)</span>
             <span class="k">return</span>

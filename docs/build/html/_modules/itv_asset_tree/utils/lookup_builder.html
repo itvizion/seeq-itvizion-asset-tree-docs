@@ -39,9 +39,22 @@
 <div class="viewcode-block" id="LookupTableBuilder">
 <a class="viewcode-back" href="../../../itv_asset_tree.utils.html#itv_asset_tree.utils.lookup_builder.LookupTableBuilder">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">LookupTableBuilder</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Builds lookup tables from cleaned data.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Builds lookup tables from cleaned data.</span>
+<span class="sd">    </span>
+<span class="sd">    This class is responsible for creating lookup tables from a DataFrame and saving</span>
+<span class="sd">    them in a structured CSV format for later use.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group_column</span><span class="p">,</span> <span class="n">key_column</span><span class="p">,</span> <span class="n">value_column</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the LookupTableBuilder with specified columns.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            group_column (str): The column used for grouping data.</span>
+<span class="sd">            key_column (str): The column containing keys.</span>
+<span class="sd">            value_column (str): The column containing values.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">group_column</span> <span class="o">=</span> <span class="n">group_column</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">key_column</span> <span class="o">=</span> <span class="n">key_column</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">value_column</span> <span class="o">=</span> <span class="n">value_column</span>
@@ -51,13 +64,13 @@
 <a class="viewcode-back" href="../../../itv_asset_tree.utils.html#itv_asset_tree.utils.lookup_builder.LookupTableBuilder.build">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Builds lookup tables as a dictionary.</span>
+<span class="sd">        Builds lookup tables as a dictionary from a given DataFrame.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            data (DataFrame): The DataFrame containing the data.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            dict: Grouped lookup table data.</span>
+<span class="sd">            dict: A dictionary where keys are group names and values are lookup tables.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">lookup_tables</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">group_name</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_column</span><span class="p">):</span>
@@ -72,7 +85,7 @@
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">save_lookup_to_csv</span><span class="p">(</span><span class="n">lookup_data</span><span class="p">,</span> <span class="n">parent_paths</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Save lookup table data to a CSV file in the required format.</span>
+<span class="sd">        Saves lookup table data to a CSV file in the required format.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            lookup_data (dict): Lookup table dictionary where keys are group names.</span>

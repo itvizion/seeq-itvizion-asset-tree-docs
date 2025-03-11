@@ -38,7 +38,13 @@
 <div class="viewcode-block" id="save_metadata">
 <a class="viewcode-back" href="../../../itv_asset_tree.utils.html#itv_asset_tree.utils.metadata_handler.save_metadata">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">save_metadata</span><span class="p">(</span><span class="n">metadata</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Save metadata to a file.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Saves metadata to a file using pickle serialization.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        metadata (any): The metadata object to be saved.</span>
+<span class="sd">        file_path (str): The path where the metadata file will be stored.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">metadata</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Metadata saved to </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
@@ -47,7 +53,15 @@
 <div class="viewcode-block" id="load_metadata">
 <a class="viewcode-back" href="../../../itv_asset_tree.utils.html#itv_asset_tree.utils.metadata_handler.load_metadata">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">load_metadata</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load metadata from a file.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Loads metadata from a file using pickle deserialization.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        file_path (str): The path to the metadata file to be loaded.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        any: The deserialized metadata object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">metadata</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Metadata loaded from </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
