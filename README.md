@@ -50,16 +50,7 @@ itv-asset-tree
 ```
 
 ## Additional Notes:
-- **Local Development:** Use `pip install -e .` for editable installs.
-    For example:
-    - `git clone https://github.com/itvizion/seeq-itvizion-asset-tree.git`
-    - `cd seeq-itvizion-asset-tree`
-    - `python -m venv venv`
-    - `source venv/bin/activate`  # On Windows use `venv\Scripts\activate`
-    - `pip install -r requirements.txt`
-    - `pip install -e .`
-
-- **Versioning:** Managed by `versioneer`
+- **Versioning:** Managed by `setuptools_scm`
 - **Testing:** Uses `pytest` locally and `pytest-mock` for CI
 - **FastAPI:** Find web api at http://127.0.0.1:8000/docs
 
