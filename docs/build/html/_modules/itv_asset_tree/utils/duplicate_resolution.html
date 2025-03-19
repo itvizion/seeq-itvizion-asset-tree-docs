@@ -33,6 +33,8 @@
   <h1>Source code for itv_asset_tree.utils.duplicate_resolution</h1><div class="highlight"><pre>
 <span></span><span class="c1"># src/utilities/duplicate_resolution.py</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">itv_asset_tree.utils.logger</span><span class="w"> </span><span class="kn">import</span> <span class="n">log_info</span><span class="p">,</span> <span class="n">log_error</span><span class="p">,</span> <span class="n">log_debug</span><span class="p">,</span> <span class="n">log_warning</span>
+
 <div class="viewcode-block" id="DuplicateStrategy">
 <a class="viewcode-back" href="../../../itv_asset_tree.utils.html#itv_asset_tree.utils.duplicate_resolution.DuplicateStrategy">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">DuplicateStrategy</span><span class="p">:</span>
@@ -150,14 +152,14 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">duplicates</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="n">group</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">key_column</span><span class="p">,</span> <span class="n">keep</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span>
         <span class="k">if</span> <span class="n">duplicates</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ No duplicates found in group &#39;</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+            <span class="n">log_info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ No duplicates found in group &#39;</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">group</span>
 
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">✅ Resolving duplicates for group: </span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">duplicates</span><span class="p">[[</span><span class="n">key_column</span><span class="p">]])</span>
+        <span class="n">log_info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">✅ Resolving duplicates for group: </span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">log_info</span><span class="p">(</span><span class="n">duplicates</span><span class="p">[[</span><span class="n">key_column</span><span class="p">]])</span>
         
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;→ Group Name: </span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚠️ Duplicates detected: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">duplicates</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">log_info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;→ Group Name: </span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">log_info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚠️ Duplicates detected: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">duplicates</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="c1"># print(f&quot;Resolved group size: {len(resolved_group)}&quot;)</span>
 
         <span class="n">resolved_group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">key_column</span><span class="p">)</span>

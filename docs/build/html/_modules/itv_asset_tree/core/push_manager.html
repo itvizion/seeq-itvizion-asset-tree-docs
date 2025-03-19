@@ -34,6 +34,7 @@
 <span></span><span class="c1"># # src/itv_asset_tree/core/push_manager.py</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">.push_strategies</span><span class="w"> </span><span class="kn">import</span> <span class="n">PushStrategy</span><span class="p">,</span> <span class="n">ImmediatePush</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">itv_asset_tree.utils.logger</span><span class="w"> </span><span class="kn">import</span> <span class="n">log_debug</span><span class="p">,</span> <span class="n">log_info</span><span class="p">,</span> <span class="n">log_error</span><span class="p">,</span> <span class="n">log_warning</span>
 
 <div class="viewcode-block" id="PushManager">
 <a class="viewcode-back" href="../../../itv_asset_tree.core.html#itv_asset_tree.core.push_manager.PushManager">[docs]</a>
@@ -59,7 +60,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">tree</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;❌ PushManager received an empty tree.&quot;</span><span class="p">)</span>
 
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ [DEBUG] PushManager initialized with tree &#39;</span><span class="si">{</span><span class="n">tree</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+        <span class="n">log_debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ [DEBUG] PushManager initialized with tree &#39;</span><span class="si">{</span><span class="n">tree</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">tree</span> <span class="o">=</span> <span class="n">tree</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span> <span class="o">=</span> <span class="n">strategy</span> <span class="k">if</span> <span class="n">strategy</span> <span class="k">else</span> <span class="n">ImmediatePush</span><span class="p">()</span>  <span class="c1"># Default strategy</span>
