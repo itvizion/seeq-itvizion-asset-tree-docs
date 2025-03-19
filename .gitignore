@@ -17,7 +17,7 @@ sphinx-docs-env/
 
 # Ignore built documentation files
 /site/
-build/
+source/
 dist/
 
 # Ignore Sphinx documentation output
