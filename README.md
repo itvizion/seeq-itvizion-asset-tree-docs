@@ -3,8 +3,6 @@ ITV Asset Tree  **ITV Asset Tree** is a Python package designed to streamline th
 
 ---
 
-## Installation Instructions for `itv_asset_tree`
-
 ## **Installation Instructions for `itv_asset_tree`**
 ### **Prerequisites**
 - **Python**: Version **3.11** or higher  
