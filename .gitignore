@@ -1,44 +1,43 @@
-# Ignore system-specific files
-.DS_Store
-Thumbs.db
+# Sphinx build artifacts
+docs/build/
+docs/build/html/
+docs/build/doctrees/
 
-# Ignore Python cache (in case of scripts for documentation automation)
+# Sphinx cache and environment files
+docs/.doctrees/
+docs/.buildinfo
+
+# Python cache
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
 
-# Ignore VS Code and JetBrains IDE config files
+# Jupyter Notebook checkpoints (if you're using any)
+.ipynb_checkpoints/
+
+# MacOS + VSCode + PyCharm noise
+.DS_Store
 .vscode/
 .idea/
 
-# Ignore Sphinx virtual environment
+# Virtual environments
+venv/
+.env/
+.venv/
 sphinx-docs-env/
 
-# Ignore built documentation files
-/site/
-source/
+# Egg & wheel artifacts
+*.egg-info/
 dist/
+build/
 
-# Ignore Sphinx documentation output
-docs/_build/
-docs/.doctrees/
-docs/.buildinfo/
-docs/_static/
-
-# Ignore generated HTML and LaTeX files
-*.html
-*.tex
-*.pdf
-
-# Ignore Jupyter Notebook checkpoints (if any)
-.ipynb_checkpoints/
-
-# Ignore log files and temporary files
+# Logs
 *.log
-*.bak
-*.swp
-*.swo
 
-# Ignore any temporary markdown preview files
-*.md~
+# Coverage and test reports
+.coverage
+htmlcov/
+.tox/
+.pytest_cache/
+
+# Pyproject isolated envs (sometimes pip cache)
+pip-wheel-metadata/

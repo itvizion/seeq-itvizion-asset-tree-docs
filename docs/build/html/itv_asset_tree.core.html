@@ -50,6 +50,20 @@
 <section id="module-itv_asset_tree.core.interfaces">
 <span id="itv-asset-tree-core-interfaces-module"></span><h2>itv_asset_tree.core.interfaces module<a class="headerlink" href="#module-itv_asset_tree.core.interfaces" title="Link to this heading">¶</a></h2>
 <dl class="py class">
+<dt class="sig sig-object py" id="itv_asset_tree.core.interfaces.ITreeArchive">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">itv_asset_tree.core.interfaces.</span></span><span class="sig-name descname"><span class="pre">ITreeArchive</span></span><a class="reference internal" href="_modules/itv_asset_tree/core/interfaces.html#ITreeArchive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#itv_asset_tree.core.interfaces.ITreeArchive" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Interface for archiving entire asset trees.</p>
+<p>This interface enforces the implementation of a tree-level archival operation.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="itv_asset_tree.core.interfaces.ITreeArchive.archive">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">archive</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/itv_asset_tree/core/interfaces.html#ITreeArchive.archive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#itv_asset_tree.core.interfaces.ITreeArchive.archive" title="Link to this definition">¶</a></dt>
+<dd><p>Archives all items in the associated asset tree.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="itv_asset_tree.core.interfaces.ITreeInsert">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">itv_asset_tree.core.interfaces.</span></span><span class="sig-name descname"><span class="pre">ITreeInsert</span></span><a class="reference internal" href="_modules/itv_asset_tree/core/interfaces.html#ITreeInsert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#itv_asset_tree.core.interfaces.ITreeInsert" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
@@ -113,34 +127,8 @@
 </dd></dl>
 
 </section>
-<section id="module-itv_asset_tree.core.push_manager">
-<span id="itv-asset-tree-core-push-manager-module"></span><h2>itv_asset_tree.core.push_manager module<a class="headerlink" href="#module-itv_asset_tree.core.push_manager" title="Link to this heading">¶</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="itv_asset_tree.core.push_manager.PushManager">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">itv_asset_tree.core.push_manager.</span></span><span class="sig-name descname"><span class="pre">PushManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strategy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#itv_asset_tree.core.push_strategies.PushStrategy" title="itv_asset_tree.core.push_strategies.PushStrategy"><span class="pre">PushStrategy</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/itv_asset_tree/core/push_manager.html#PushManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#itv_asset_tree.core.push_manager.PushManager" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Handles pushing an asset tree to Seeq using different push strategies.</p>
-<p>This class manages the process of pushing a tree using a specified strategy,
-allowing for flexibility in how the push operation is executed.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="itv_asset_tree.core.push_manager.PushManager.push">
-<span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metadata_state_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/itv_asset_tree/core/push_manager.html#PushManager.push"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#itv_asset_tree.core.push_manager.PushManager.push" title="Link to this definition">¶</a></dt>
-<dd><p>Executes the push operation using the assigned push strategy.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>metadata_state_file</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to a metadata state file for storing push state.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The result of the push operation, as determined by the strategy.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Any</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<section id="itv-asset-tree-core-push-manager-module">
+<h2>itv_asset_tree.core.push_manager module<a class="headerlink" href="#itv-asset-tree-core-push-manager-module" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-itv_asset_tree.core.push_strategies">
 <span id="itv-asset-tree-core-push-strategies-module"></span><h2>itv_asset_tree.core.push_strategies module<a class="headerlink" href="#module-itv_asset_tree.core.push_strategies" title="Link to this heading">¶</a></h2>
