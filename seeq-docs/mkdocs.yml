@@ -1,0 +1,17 @@
+site_name: ITV Asset Tree Docs
+
+theme:
+  name: material
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths:
+            - /Users/tpomavil/repos/ITVizion/itv-asset-tree-prod/itvizion_asset_tree-data-lab-functions/my_datalab_functions_example
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
