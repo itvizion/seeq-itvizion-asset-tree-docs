@@ -1,64 +1,88 @@
-# itv_asset_tree
-ITV Asset Tree  **ITV Asset Tree** is a Python package designed to streamline the creation and management of asset trees in Seeq. 
+# ITV Asset Tree Documentation
+
+This repository contains the standalone documentation for the **ITV Asset Tree** project, a Python-based toolkit for building asset trees to be used in analytics pipelines designed for Seeq's Data Lab environment.
 
 ---
 
-## 📖 Documentation
+## 📚 Documentation Usage
 
-To access the full documentation, open:
+To view the documentation locally:
 
-👉 **[Click Here to Open Docs](docs/build/html/index.html)**
+### 1. Clone this repository
 
-(_If the link doesn't work, navigate to `docs/build/html/index.html` and open it manually._)
+```bash
+git clone https://github.com/itvizion/seeq-itvizion-asset-tree-docs.git
+cd seeq-itvizion-seeq-itvizion-asset-tree-docs
+```
 
----
+### 2. Set up the environment
 
-## **Installation Instructions for `itv_asset_tree`**
-### **Prerequisites**
-- **Python**: Version **3.11** or higher  
-- **pip**: Latest version installed  
-- **git**: Installed and configured  
-
----
-
-## 1. Create a Virtual Environment
 ```bash
 python -m venv venv
-source venv/bin/activate  # On Windows use `venv\\Scripts\\activate`
+source venv/bin/activate  # On Windows use venv\\Scripts\\activate
+pip install -r requirements.txt
 ```
 
-## 2. Install the itv-asset-tree Package directly from the GitHub Repository
+> 💡 Ensure you also have access to the source code repository for `itv_asset_tree`. This documentation loads Python modules directly from that external path.
+
+### 3. Start the documentation server
+
 ```bash
-pip install git+https://github.com/itvizion/seeq-itvizion-asset-tree.git
+cd seeq-docs
+mkdocs serve
 ```
 
-## 3. Set Up Environment Variables
-Create a `.env` file in the root directory with the following content:
-Below is an example...
-```ini
-SERVER_USERNAME=your_email@example.com
-SERVER_PASSWORD=my_passwd
-SERVER_HOST=https://your_server_name.seeq.tech
-LOG_LEVEL=debug
-SEEQ_FORCE_LOGIN=True
-```
-Update these values according to your server configuration.
+Open your browser to [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
-## 4. Verify Installation
+### 📦 Alternative Access Methods
+
+If you do not have access to the code repository but still need to view the documentation:
+
+#### Option 1: Open Locally (Offline Use)
+
+1. Unzip the provided documentation package.
+2. Open `index.html` in the `site/` folder with any browser.
+
+#### Option 2: Shared Drive or Portal
+
+- Access the unzipped `site/` folder hosted on a network share or company portal.
+- Open `index.html` in your browser.
+
+#### Option 3: Local Web Server (Developers Only)
+
+If you want to serve the documentation locally:
+
 ```bash
-itv-asset-tree
+cd seeq-docs/site
+python -m http.server 8000
 ```
 
-## Additional Notes:
-- **Versioning:** Managed by `setuptools_scm`
-- **Testing:** Uses `pytest` locally and `pytest-mock` for CI
-- **FastAPI:** Find web api at http://127.0.0.1:8000/docs
-
-- **Quotation:** Submit requests for this add-on to sales@itvizion.com
+Then open: [http://localhost:8000](http://localhost:8000)
 
 ---
-You’re all set! 🎉 Start building with `itv_asset_tree`.
 
-## License Agreement
-By using this software, you agree to the [IT Vizion EULA](https://itvizion.com/eula).
+## 🧭 Structure
 
+Documentation is written in Markdown and rendered using **MkDocs** with the Material theme and mkdocstrings for auto-generating API documentation from Python code.
+
+All modules in the `itv_asset_tree` package are included and grouped by feature domain.
+
+---
+
+## 🛠 Requirements
+
+- Python 3.11+
+- Access to the external code repository containing the `itv_asset_tree` package
+- See `requirements.txt` for Python dependencies
+
+---
+
+## 📝 Style Guide
+
+To ensure complete documentation coverage, all classes, functions, and methods in `itv_asset_tree` should include [Google-style Python docstrings](https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings). MkDocs + mkdocstrings will render them automatically.
+
+---
+
+## 🔒 License
+
+This documentation is provided under the [IT Vizion EULA](https://itvizion.com/eula).
